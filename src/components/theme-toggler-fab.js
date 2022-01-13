@@ -9,7 +9,7 @@ export const ToggleFabIcon = () => {
     <ThemeContext.Consumer>
       {({ changeTheme }) => (
         <button
-          className="p-0 w-14 h-14 bg-slate-300 shadow rounded-full fixed bottom-16 right-8" onClick={() => {
+          className="p-0 w-12 h-12 bg-slate-300 shadow rounded-full fixed md:bottom-16 md:right-8 bottom-4 right-4" onClick={() => {
             setDarkMode(!darkMode);
             changeTheme(darkMode ? themes.light : themes.dark);
           }}>

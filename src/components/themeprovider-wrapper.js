@@ -21,7 +21,7 @@ export default function ThemeContextWrapper(props) {
         document.documentElement.classList.add("dark");
         document.body.classList.add("dark");
         document.getElementById("root").classList.add("dark");
-        document.body.style.background = "#000";
+        document.body.style.background = "#34495e";
         break;
     }
   }, [theme]);
