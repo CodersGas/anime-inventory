@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorElement } from "./error-element";
 import Rating from "@mui/material/Rating";
-import AddIcon from "@mui/icons-material/Add"
 
 const Form = () => {
+  console.log('env ', process.env.PROD_ENV);
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
 
