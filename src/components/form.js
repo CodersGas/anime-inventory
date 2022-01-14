@@ -18,7 +18,7 @@ const Form = () => {
 
   const updateFile = (incomingFile) => setFile(incomingFile);
 
-  const onFormSubmit = (data) => {
+  const onFormSubmit = async(data) => {
     try{
       setLoading(true);
       if (!data.rating) data.rating = rating;
@@ -28,7 +28,7 @@ const Form = () => {
       formData.append("anime_name", data.anime_name);
       formData.append("rating", data.rating);
 
-      hitAPI("POST", formData, "addNew");
+      await hitAPI("POST", formData, "addNew");
     }catch(error) {
       console.log("Something went wrong in form submit ", error);
     }
