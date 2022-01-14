@@ -6,7 +6,6 @@ import ImageDropzone from "./image-dropzone";
 import { hitAPI } from "../helpers/hitAPI";
 
 const Form = () => {
-  console.log('envs ', process.env.NODE_ENV, process.env.REACT_APP_API_URL);
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(undefined);
