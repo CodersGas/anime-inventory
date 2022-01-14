@@ -2,10 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorElement } from "./error-element";
 import Rating from "@mui/material/Rating";
+import ImageDropzone from "./image-dropzone";
+import { hitAPI } from "../helpers/hitAPI";
 
 const Form = () => {
+  console.log('envs ', process.env.NODE_ENV, process.env.REACT_APP_API_URL);
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(undefined);
 
   const {
     register,
@@ -13,16 +17,34 @@ const Form = () => {
     formState: { errors }
   } = useForm();
 
+  const updateFile = (incomingFile) => setFile(incomingFile);
+
   const onFormSubmit = (data) => {
-    if (!data.rating) data.rating = rating;
-    console.log(data);
+    try{
+      setLoading(true);
+      if (!data.rating) data.rating = rating;
+      
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("anime_name", data.anime_name);
+      formData.append("rating", data.rating);
+
+      hitAPI("POST", formData, "addNew");
+    }catch(error) {
+      console.log("Something went wrong in form submit ", error);
+    }
+    setLoading(false);
   }
 
   return (
     <form
       onSubmit={handleSubmit(onFormSubmit)}
-      className="flex items-center justify-center flex-col px-7 translate-y-1/2"
+      className="flex items-center justify-center flex-col px-7 md:mt-32 mt-20"
     >
+      <div className="mb-8 w-full md:w-1/3" >
+        <ImageDropzone updateFile={updateFile} />
+      </div>
+
       <div className="mb-4 w-full md:w-1/3" >
         <label className="lock text-gray-700 dark:text-white font-bold text-lg" htmlFor="anime_name" >
           Anime
@@ -73,7 +95,7 @@ const Form = () => {
         />
       </div>
 
-      <div className="w-full md:w-1/3 mt-8" >
+      <div className="w-full md:w-1/3 my-8" >
         <button
           type="submit"
           className={"bg-gray-300 w-full justify-center hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center transition-colors duration-500 "}
