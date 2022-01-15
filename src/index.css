@@ -18,10 +18,10 @@ code {
     monospace;
 }
 
-.dark .css-1c99szj-MuiRating-icon {
+.dark .MuiRating-iconEmpty {
   color: #fff;
 }
 
-.css-1c99szj-MuiRating-icon {
+.MuiRating-iconEmpty {
   color: #777;
 }
