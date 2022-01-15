@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anime-inventory/static/css/main.203b4471.css",
+    "main.css": "/anime-inventory/static/css/main.ebd287a8.css",
     "main.js": "/anime-inventory/static/js/main.7f90aff6.js",
     "static/js/787.42d08c96.chunk.js": "/anime-inventory/static/js/787.42d08c96.chunk.js",
     "index.html": "/anime-inventory/index.html",
-    "main.203b4471.css.map": "/anime-inventory/static/css/main.203b4471.css.map",
+    "main.ebd287a8.css.map": "/anime-inventory/static/css/main.ebd287a8.css.map",
     "main.7f90aff6.js.map": "/anime-inventory/static/js/main.7f90aff6.js.map",
     "787.42d08c96.chunk.js.map": "/anime-inventory/static/js/787.42d08c96.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.203b4471.css",
+    "static/css/main.ebd287a8.css",
     "static/js/main.7f90aff6.js"
   ]
 }
