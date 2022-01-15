@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { ErrorElement } from "./error-element";
 
-export default function ImageDropzone({updateFile}) {
-  const [previewFile, setPreviewFile] = useState(undefined);
+export default function ImageDropzone({updateFile, previewImg}) {
+  const [previewFile, setPreviewFile] = useState(previewImg);
 
   const {
     getRootProps,
@@ -35,6 +35,10 @@ export default function ImageDropzone({updateFile}) {
       </>
     )
   });
+
+  useEffect(() => {
+    if(previewImg) setPreviewFile(previewImg);
+  }, [previewImg]);
 
   return (
     <>

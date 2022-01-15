@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorElement } from "./error-element";
 import Rating from "@mui/material/Rating";
 import ImageDropzone from "./image-dropzone";
 import { hitAPI } from "../helpers/hitAPI";
+import { addNotification } from "./addNotification";
+import { useNavigate } from 'react-router-dom';
 
-const Form = () => {
+const Form = ({ editData }) => {
+  const navigate = useNavigate();
+
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(undefined);
+  const [previewImg, setPreviewImg] = useState(null);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm();
 
@@ -28,12 +34,34 @@ const Form = () => {
       formData.append("anime_name", data.anime_name);
       formData.append("rating", data.rating);
 
-      await hitAPI("POST", formData, "addNew");
+      if(editData) {
+        formData.append("dataId", editData._id);
+        const response = await hitAPI("POSTEDIT", formData, "editRecord");
+        if(response.status === "success") {
+          addNotification("Success", "Data updated successfully", "success");
+          return navigate("/");
+        }
+      }else {
+        const response = await hitAPI("POST", formData, "addNew");
+        if(response.status === "success") {
+          addNotification("Success", "Data added successfully", "success");
+          return navigate("/");
+        }
+      }
     }catch(error) {
+      addNotification("Error", "Something went wrong. Please try again", "danger");
       console.log("Something went wrong in form submit ", error);
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    if(editData) {
+      setRating(editData.rating);
+      setValue("anime_name", editData.name);
+      setPreviewImg(editData.img);
+    }
+  }, [editData]);
 
   return (
     <form
@@ -41,7 +69,7 @@ const Form = () => {
       className="flex items-center justify-center flex-col px-7 md:mt-32 mt-20"
     >
       <div className="mb-8 w-full md:w-1/3" >
-        <ImageDropzone updateFile={updateFile} />
+        <ImageDropzone updateFile={updateFile} previewImg={previewImg} />
       </div>
 
       <div className="mb-4 w-full md:w-1/3" >
@@ -107,7 +135,7 @@ const Form = () => {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           }
-          Add
+          {editData ? "Update" : "Add"}
         </button>
       </div>
     </form>

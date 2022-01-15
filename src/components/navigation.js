@@ -1,19 +1,27 @@
+import { Link } from "react-router-dom";
+
 const Navigation = () => {
 
   return(
-    <nav className="flex align-middle py-4 gap-4" >
-      <button className="dark:text-white md:text-xl basis-auto flex-1 bg-transparent text-blue-700 font-semibold">
-        Add Yours
-      </button>
+    <nav className="flex items-center justify-around py-4 gap-4 mt-3" >
+      <Link to="/addNew" >
+        <button className="dark:text-white md:text-xl bg-transparent text-blue-700 font-semibold">
+          Add Yours
+        </button>
+      </Link>
 
-      <span className="relative basis-auto flex-1 text-center my-4">
-        <span className="block absolute -inset-3 -skew-y-3 bg-pink-500" aria-hidden="true"></span>
-        <span className="relative text-white font-bold md:text-2xl">Anime-Tory</span>
-      </span>
+      <Link to="/" >
+        <span className="relative text-center my-4">
+          <span className="block absolute -inset-3 -skew-y-3 dark:bg-pink-600 border-pink-600 border-2 md:border-t-0" aria-hidden="true"></span>
+          <span className="relative text-pink-600 dark:text-white font-bold md:text-5xl">Anime-Tory</span>
+        </span>
+      </Link>
 
-      <button className="dark:text-white basis-auto md:text-xl flex-1 bg-transparent text-blue-700 font-semibold">
-        All
-      </button>
+      <Link to="/" >
+        <button className="dark:text-white md:text-xl bg-transparent text-blue-700 font-semibold">
+          All
+        </button>
+      </Link>
     </nav>
   )
 }
