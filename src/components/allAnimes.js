@@ -66,7 +66,7 @@ const AllAnimes = () => {
                 <div className="flex justify-between items-end w-full" >
                   <div className="mt-4 flex justify-center flex-col gap-1" >
                     <Tooltip title={<p className="text-xl" >Edit</p>} placement="top" arrow >
-                      <Link to={`/anime-inventory/edit/${data._id}`} >
+                      <Link to={`/edit/${data._id}`} >
                         <p className="capitalize dark:text-white text-slate-700" >
                           {data.name} <Edit fontSize="small" className="ml-2" />
                         </p>
