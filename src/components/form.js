@@ -43,14 +43,14 @@ const Form = ({ editData }) => {
         const response = await hitAPI("POSTEDIT", formData, "editRecord");
         if(response.status === "success") {
           addNotification("Success", "Data updated successfully", "success");
-          return navigate("/anime-inventory/");
+          return navigate("/");
         }
       }else {
         formData.append("file", file);
         const response = await hitAPI("POST", formData, "addNew");
         if(response.status === "success") {
           addNotification("Success", "Data added successfully", "success");
-          return navigate("/anime-inventory/");
+          return navigate("/");
         }
       }
     }catch(error) {

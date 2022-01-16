@@ -8,7 +8,7 @@ const EmptyScreen = () => {
         Such Emptiness. Add your favorite Anime to see here
       </p>
 
-      <Link to="/anime-inventory/addNew" >
+      <Link to="/addNew" >
         <button
           type="button"
           className="mx-auto py-4 mb-4 w-48 mt-4
