@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { hitAPI } from "../helpers/hitAPI";
 import Rating from "@mui/material/Rating";
 import { Link, Outlet } from "react-router-dom";
+import EmptyScreen from "./emptyScreen";
 
 const AllAnimes = () => {
 
@@ -31,9 +32,9 @@ const AllAnimes = () => {
     <>
       <section className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 grid-cols-1 justify-center items-center gap-8 my-16 mx-8 md:mx-16" >
         {
-          allData.length &&
+          allData.length ?
           allData.map((data, index) => (
-            <Link to={`/edit/${data._id}`} key={data._id} >
+            <Link to={`/anime-inventory/edit/${data._id}`} key={data._id} >
               <div className="cursor-pointer" >
                 <img
                   className="h-64 w-full"
@@ -54,12 +55,17 @@ const AllAnimes = () => {
               </div>
             </Link>
           ))
+          : null
         }
         <Outlet />
       </section>
+      
+      {
+        !allData.length && <EmptyScreen />
+      }
 
       {
-        totalData === allData.length ? null :
+        (totalData === allData.length || !allData.length) ? null :
         <div className="w-full flex justify-center" >
           <button
             type="button"

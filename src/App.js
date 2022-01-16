@@ -17,9 +17,9 @@ function App() {
         <ReactNotification />
         <Navigation />
         <Routes>
-          <Route path="/" element={<AllAnimes />} />
-          <Route path="/addNew" element={<Form />} />
-          <Route path="/edit/:editId" element={<EditAnime />} />
+          <Route path="/anime-inventory/" element={<AllAnimes />} />
+          <Route path="/anime-inventory/addNew" element={<Form />} />
+          <Route path="/anime-inventory/edit/:editId" element={<EditAnime />} />
         </Routes>
         <ToggleFabIcon />
       </ThemeContextWrapper>

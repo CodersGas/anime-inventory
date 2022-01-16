@@ -30,22 +30,27 @@ const Form = ({ editData }) => {
       if (!data.rating) data.rating = rating;
       
       const formData = new FormData();
-      formData.append("file", file);
       formData.append("anime_name", data.anime_name);
       formData.append("rating", data.rating);
 
       if(editData) {
+        if(file) {
+          formData.append("file", file);
+        }else {
+          formData.append("file", editData.img);
+        }
         formData.append("dataId", editData._id);
         const response = await hitAPI("POSTEDIT", formData, "editRecord");
         if(response.status === "success") {
           addNotification("Success", "Data updated successfully", "success");
-          return navigate("/");
+          return navigate("/anime-inventory/");
         }
       }else {
+        formData.append("file", file);
         const response = await hitAPI("POST", formData, "addNew");
         if(response.status === "success") {
           addNotification("Success", "Data added successfully", "success");
-          return navigate("/");
+          return navigate("/anime-inventory/");
         }
       }
     }catch(error) {
