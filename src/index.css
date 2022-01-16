@@ -18,10 +18,12 @@ code {
     monospace;
 }
 
-.dark .MuiRating-iconEmpty {
+.dark .MuiRating-iconEmpty,
+.dark .deleteIcon {
   color: #fff;
 }
 
-.MuiRating-iconEmpty {
+.MuiRating-iconEmpty,
+.deleteIcon {
   color: #777;
 }

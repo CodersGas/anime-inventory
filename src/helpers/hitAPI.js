@@ -23,6 +23,9 @@ export const hitAPI = async (httpMethod, payload, endpoint) => {
     case "GETSINGLE":
       response = await axios.get(apiUrl);
       break;
+    case "DELETE":
+        response = await axios.delete(apiUrl + `?dataId=${payload.id}`);
+        break;
   }
 
   return response.data;
